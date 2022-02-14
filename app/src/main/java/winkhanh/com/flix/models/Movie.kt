@@ -10,6 +10,7 @@ class Movie(jsonObj: JSONObject) {
     val title: String = jsonObj.getString("title")
     val overview: String = jsonObj.getString("overview")
     val backdropPath: String? = jsonObj.getString("backdrop_path")
+        get()=prefixImageUrl+field
     val score: Number = jsonObj.getDouble("vote_average")
 
     companion object{

@@ -18,7 +18,7 @@ import winkhanh.com.flix.models.Movie
 
 class MainActivity : AppCompatActivity() {
     private val apiUrl = "https://api.themoviedb.org/3/movie/now_playing"
-    private val apiKey = ""
+    private val apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
     var movies : MutableList<Movie> = mutableListOf<Movie>()
     lateinit var adapter : MovieAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("Main Activity","startaaa")
 
         val rvMovies : RecyclerView = findViewById(R.id.rvMovies)
+
+
         adapter = MovieAdapter(this, movies)
         rvMovies.adapter = adapter
         rvMovies.layoutManager = LinearLayoutManager(this)

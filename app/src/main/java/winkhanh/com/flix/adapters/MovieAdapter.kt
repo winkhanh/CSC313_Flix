@@ -1,6 +1,7 @@
 package winkhanh.com.flix.adapters
 
 import android.content.Context
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,13 @@ class MovieAdapter(val context: Context, val movies: List<Movie>): RecyclerView.
         fun bind(movie: Movie) {
             tvTitle.text = movie.title
             tvOverview.text = movie.overview
-            Glide.with(context).load(movie.posterPath).into(ivPoster)
+            if (context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                Glide.with(context).load(movie.backdropPath).placeholder(R.drawable.placeholder).into(ivPoster)
+            }
+            else{
+                Glide.with(context).load(movie.posterPath).placeholder(R.drawable.placeholder).into(ivPoster)
+            }
+
         }
 
         val tvTitle : TextView
