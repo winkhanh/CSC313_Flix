@@ -18,7 +18,7 @@ import winkhanh.com.flix.models.Movie
 
 class MainActivity : AppCompatActivity() {
     private val apiUrl = "https://api.themoviedb.org/3/movie/now_playing"
-    private val apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+    private val apiKey = ""
     var movies : MutableList<Movie> = mutableListOf<Movie>()
     lateinit var adapter : MovieAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
