@@ -3,10 +3,12 @@ package winkhanh.com.flix
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.RoundedCorner
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.android.material.shape.RoundedCornerTreatment
 
 import org.parceler.Parcels
 import winkhanh.com.flix.models.Movie
@@ -30,7 +32,8 @@ class DetailPageActivity : AppCompatActivity() {
         tvTitle.text = movie.title
         tvOverview.text = movie.overview
         ratingBar.rating =  movie.score.toFloat()
-        Glide.with(this).load(movie.backdropPath).placeholder(R.drawable.placeholder).into(ivPoster)
+        Glide.with(this).load(movie.backdropPath).placeholder(R.drawable.placeholder)
+            .into(ivPoster)
         ivPoster.setOnClickListener {
             movie.getYoutubeId(this)
         }
