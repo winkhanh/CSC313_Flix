@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     movies.addAll(Movie.getMovies(result))
                     adapter.notifyDataSetChanged()
                 }catch(e:JSONException) {
-                    Log.d("Main Activity","hit json exception")
+                    Log.d("Mai n Activity","hit json exception")
 
                 }
             }
