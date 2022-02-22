@@ -3,18 +3,27 @@ package winkhanh.com.flix
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.RoundedCorner
+import android.view.MenuItem
+
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.google.android.material.shape.RoundedCornerTreatment
 
 import org.parceler.Parcels
 import winkhanh.com.flix.models.Movie
 
 class DetailPageActivity : AppCompatActivity() {
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            android.R.id.home ->{
+                this.supportFinishAfterTransition()
+                return true;
+            }
 
+        }
+        return super.onContextItemSelected(item)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_page)

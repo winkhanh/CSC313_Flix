@@ -19,6 +19,7 @@
 
     <TextView
         android:id="@+id/tvDetailTitle"
+        android:transitionName="title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -31,6 +32,7 @@
 
     <TextView
         android:id="@+id/tvDetailOverview"
+        android:transitionName="overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

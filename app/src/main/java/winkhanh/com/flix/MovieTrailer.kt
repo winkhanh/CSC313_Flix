@@ -25,6 +25,7 @@ class MovieTrailer : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener 
         p2: Boolean
     ) {
         p1?.cueVideo(videoKey)
+        p1?.play()
     }
 
     override fun onInitializationFailure(

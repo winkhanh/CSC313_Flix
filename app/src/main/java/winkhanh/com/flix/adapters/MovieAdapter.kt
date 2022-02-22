@@ -1,5 +1,6 @@
 package winkhanh.com.flix.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -10,9 +11,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import org.parceler.Parcels
 import winkhanh.com.flix.DetailPageActivity
 import winkhanh.com.flix.R
@@ -24,6 +28,7 @@ class MovieAdapter(val context: Context, val movies: List<Movie>): RecyclerView.
 
     abstract inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val rlMovieContainer : RelativeLayout = itemView.findViewById(R.id.rlMovieContainer)
+        protected var options : ActivityOptionsCompat = ActivityOptionsCompat.makeBasic()
         open fun bind(movie: Movie){
             rlMovieContainer.setOnClickListener {
                 Log.d("Main Activity","startpre")
@@ -31,7 +36,7 @@ class MovieAdapter(val context: Context, val movies: List<Movie>): RecyclerView.
                     putExtra("movie", Parcels.wrap(movie))
                 }
                 Log.d("Main Activity","startc")
-                context.startActivity(i)
+                context.startActivity(i,options.toBundle())
             }
         }
     }
@@ -47,6 +52,7 @@ class MovieAdapter(val context: Context, val movies: List<Movie>): RecyclerView.
             else{
                 Glide.with(context).load(movie.posterPath).placeholder(R.drawable.placeholder).into(ivPoster)
             }
+
             super.bind(movie)
         }
         val tvTitle : TextView
@@ -56,11 +62,16 @@ class MovieAdapter(val context: Context, val movies: List<Movie>): RecyclerView.
             tvTitle = itemView.findViewById(R.id.tvTitle)
             tvOverview = itemView.findViewById(R.id.tvOverview)
             ivPoster = itemView.findViewById(R.id.ivPoster)
+            val p1 : Pair<View, String> = Pair.create(tvTitle as View,"title")
+
+            options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, tvTitle as View, "title")
         }
     }
     inner class ViewHolder2(itemView: View) : ViewHolder(itemView) {
         override fun bind(movie: Movie) {
-            Glide.with(context).load(movie.backdropPath).placeholder(R.drawable.placeholder).into(ivPoster)
+            Glide.with(context).load(movie.backdropPath)
+                .centerCrop() // scale image to fill the entire ImageView
+                .placeholder(R.drawable.placeholder).into(ivPoster)
             ivPoster.setOnClickListener {
                 movie.getYoutubeId(context)
             }
